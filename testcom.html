@@ -1,0 +1,564 @@
+<!-- complete single-file site: optimized + premium tweaks + FAQ/CTA/Form/Footer + analytics -->
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Marketing Ristoranti Vicenza | Più Clienti, Più Prenotazioni</title>
+  <meta name="description" content="Servizio marketing digitale per ristoranti, bar e locali a Vicenza. Aumenta prenotazioni del 35% con social media, foto professionali e campagne ADS locali." />
+  <meta name="keywords" content="marketing ristoranti Vicenza, pubblicità locali Vicenza, social media ristoranti, gestione Instagram ristoranti" />
+  <!-- Preload font for faster paint -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <!-- Tailwind CDN (dev/prototype friendly) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Tailwind config (kept minimal)
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#FF751F',
+            accent: '#FF3131',
+            blue: '#004AAD',
+            pageBg: '#0f1724'
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Critical lightweight styles (premium tweaks) -->
+  <style>
+    :root{
+      --max-width: 1200px;
+    }
+    html,body { height: 100%; }
+    body { font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+    /* Smooth scrolling for anchors */
+    html { scroll-behavior: smooth; }
+    /* Better heading balance */
+    h1,h2,h3 { letter-spacing: -0.02em; }
+    /* Premium card shadow */
+    .card-shadow { box-shadow: 0 12px 30px rgba(2,6,23,0.22); }
+    /* pricing shimmer already present but tuned */
+    .pricing-card::before { background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent); }
+    /* reduced motion support */
+    @media (prefers-reduced-motion: reduce) {
+      * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+    }
+    /* mobile header adjustments */
+    .hero-title { line-height: 1.05; }
+    /* improved button hit area */
+    .cta-btn { padding-left: 1.75rem; padding-right: 1.75rem; }
+    /* improved small devices spacing */
+    @media (max-width: 640px) {
+      .hero-title { font-size: 2rem; }
+      .hero-sub { font-size: 1rem; }
+    }
+    /* lazy image placeholder */
+    .lazy-img { background: linear-gradient(90deg, rgba(0,0,0,0.03), rgba(0,0,0,0.02)); min-height: 120px; }
+    /* subtle glass effect for featured label */
+    .featured-badge { background: rgba(255,255,255,0.12); backdrop-filter: blur(6px); }
+  </style>
+</head>
+<body class="antialiased text-gray-900">
+
+  <!-- STICKY NAV -->
+  <header class="fixed w-full top-0 z-40 bg-white/60 backdrop-blur-md">
+    <div class="max-w-[var(--max-width)] mx-auto px-5 py-3 flex items-center justify-between">
+      <a href="#" class="font-black text-xl text-primary">Comunicazione <span class="text-accent">Bold</span></a>
+      <nav class="hidden md:flex gap-6 items-center">
+        <a href="#pacchetti" class="text-sm font-semibold hover:underline">Pacchetti</a>
+        <a href="#benefici" class="text-sm font-semibold hover:underline">Benefici</a>
+        <a href="#portfolio" class="text-sm font-semibold hover:underline">Portfolio</a>
+        <a href="#contatti" class="btn cta-btn bg-primary text-white px-4 py-2 rounded-full font-bold hover:opacity-95">Prenota call</a>
+      </nav>
+      <!-- mobile menu trigger -->
+      <div class="md:hidden">
+        <button id="mobileToggle" class="p-2 rounded-md border border-gray-200">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16"></path></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MOBILE NAV (hidden by default) -->
+  <div id="mobileNav" class="fixed inset-0 z-30 bg-black/40 hidden" aria-hidden="true">
+    <div class="absolute top-16 right-4 bg-white rounded-xl p-6 w-11/12 max-w-sm card-shadow">
+      <nav class="flex flex-col gap-4">
+        <a href="#pacchetti" class="font-semibold">Pacchetti</a>
+        <a href="#benefici" class="font-semibold">Benefici</a>
+        <a href="#portfolio" class="font-semibold">Portfolio</a>
+        <a href="#contatti" class="font-semibold">Prenota call</a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- HERO SECTION -->
+  <section class="hero-gradient min-h-[80vh] flex items-center justify-center text-white relative overflow-hidden pt-20">
+    <div class="absolute top-16 right-8 w-44 h-44 bg-white opacity-8 rounded-full blur-3xl animate-[float_6s_ease-in-out_infinite]"></div>
+    <div class="container max-w-[var(--max-width)] mx-auto px-6 py-20 relative z-10">
+      <div class="max-w-3xl mx-auto text-center">
+        <h1 class="hero-title text-4xl md:text-6xl font-extrabold mb-4 reveal">Riempi il Tuo Locale<br class="hidden md:block">Ogni Sera — Noi Facciamo il Restante.</h1>
+        <p class="hero-sub text-lg md:text-xl mb-8 opacity-95 reveal">Marketing locale su misura per ristoranti, bar e beverage in provincia di Vicenza. Più clienti, più prenotazioni, più serate piene.</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center reveal">
+          <a id="ctaPacchetti" href="#pacchetti" class="bg-white text-primary px-8 py-3 rounded-full font-bold text-lg cta-btn shadow-lg hover:shadow-2xl">Scopri i Pacchetti</a>
+          <a href="#contatti" class="border-2 border-white text-white px-8 py-3 rounded-full font-bold text-lg cta-btn hover:bg-white hover:text-primary transition">Prenota una Chiamata</a>
+        </div>
+        <p class="text-sm mt-6 opacity-90 reveal">Serviamo locali a Vicenza e provincia — risultati misurabili o lavoro gratuito extra fino al risultato.</p>
+      </div>
+    </div>
+    <!-- scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+      <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+    </div>
+  </section>
+
+  <!-- PROBLEMA → SOLUZIONE -->
+  <section id="problemi" class="py-16 bg-gray-50">
+    <div class="max-w-[var(--max-width)] mx-auto px-6">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-10 reveal">Vi riconoscete?</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-white p-6 rounded-xl card-shadow reveal hover:translate-y-[-6px] transition">
+          <h3 class="font-bold text-xl mb-2">Locale vuoto a metà settimana</h3>
+          <p class="text-gray-600">Strategie mirate per riempire i giorni "lenti" e aumentare il giro clienti settimanale.</p>
+        </div>
+        <div class="bg-white p-6 rounded-xl card-shadow reveal">
+          <h3 class="font-bold text-xl mb-2">Social che non convertono</h3>
+          <p class="text-gray-600">Contenuti professionali e calendario editoriale studiato per la conversione locale.</p>
+        </div>
+        <div class="bg-white p-6 rounded-xl card-shadow reveal">
+          <h3 class="font-bold text-xl mb-2">Ads che bruciano budget</h3>
+          <p class="text-gray-600">Campagne locali ottimizzate per ROI con target su Vicenza e provincia.</p>
+        </div>
+        <div class="bg-white p-6 rounded-xl card-shadow reveal">
+          <h3 class="font-bold text-xl mb-2">Non vi trovano su Google</h3>
+          <p class="text-gray-600">Ottimizziamo la scheda locale, recensioni e presenza su mappe per comparire prima.</p>
+        </div>
+      </div>
+      <div class="mt-8 bg-gradient-to-r from-primary to-accent text-white p-8 rounded-2xl text-center reveal card-shadow">
+        <h4 class="text-2xl font-extrabold">La soluzione completa per i locali di Vicenza</h4>
+        <p class="mt-3">Dai contenuti professionali alle campagne local ads, gestiamo tutto per trasformare visite in prenotazioni.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFICI -->
+  <section id="benefici" class="py-16 bg-white">
+    <div class="max-w-[var(--max-width)] mx-auto px-6">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-8 reveal">Risultati Concreti</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="text-center p-6 rounded-xl bg-gray-50 reveal card-shadow">
+          <div class="text-4xl font-extrabold text-primary">+35%</div>
+          <p class="mt-2 text-gray-600">Aumento medio prenotazioni nei primi 90 giorni</p>
+        </div>
+        <div class="text-center p-6 rounded-xl bg-gray-50 reveal card-shadow">
+          <div class="text-4xl font-extrabold text-accent">5×</div>
+          <p class="mt-2 text-gray-600">Contenuti settimanali professionali</p>
+        </div>
+        <div class="text-center p-6 rounded-xl bg-gray-50 reveal card-shadow">
+          <div class="text-4xl font-extrabold text-blue">#1</div>
+          <p class="mt-2 text-gray-600">Posizionamento su Google Maps</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PACCHETTI -->
+  <section id="pacchetti" class="py-16 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+    <div class="max-w-[var(--max-width)] mx-auto px-6">
+      <h2 class="text-3xl md:text-4xl text-center font-extrabold mb-6 reveal">Scegli il Pacchetto</h2>
+      <p class="text-center opacity-90 mb-10 reveal">Soluzioni flessibili, senza vincoli annuali. Partiamo subito.</p>
+
+      <div class="grid md:grid-cols-3 gap-6 mb-10">
+        <!-- BLACK -->
+        <div class="pricing-card bg-white text-gray-900 rounded-2xl p-6 reveal card-shadow hover:scale-[1.02] transition">
+          <div class="text-center mb-4">
+            <div class="text-2xl mb-2">📦</div>
+            <h3 class="text-2xl font-extrabold mb-1">BLACK</h3>
+            <p class="text-sm text-gray-600 mb-3">Piano Essenziale</p>
+            <div class="text-3xl font-extrabold text-primary mb-2">€497<span class="text-base font-medium text-gray-600">/mese</span></div>
+          </div>
+          <ul class="text-sm space-y-2 mb-4">
+            <li>12 post social al mese (3/sett)</li>
+            <li>Gestione Facebook/Instagram</li>
+            <li>1 shooting foto mensile (20 foto)</li>
+            <li>Ottimizzazione Google My Business</li>
+            <li>Reportistica mensile</li>
+          </ul>
+          <a href="#contatti" class="block text-center bg-primary text-white py-3 rounded-full font-bold">Scegli BLACK</a>
+        </div>
+
+        <!-- SILVER featured -->
+        <div class="pricing-card relative bg-gradient-to-br from-primary to-accent text-white rounded-2xl p-6 reveal transform scale-[1.02] card-shadow">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 featured-badge px-4 py-1 rounded-full text-sm font-bold">PIÙ RICHIESTO</div>
+          <div class="text-center mb-4">
+            <div class="text-2xl mb-2">🥈</div>
+            <h3 class="text-2xl font-extrabold mb-1">SILVER</h3>
+            <p class="text-sm mb-3 opacity-90">Piano Crescita</p>
+            <div class="text-3xl font-extrabold mb-2">€897<span class="text-base font-medium opacity-90">/mese</span></div>
+          </div>
+          <ul class="text-sm space-y-2 mb-4">
+            <li><strong>Tutto di BLACK, più:</strong></li>
+            <li>20 post social (5/sett), 2 shooting foto/video</li>
+            <li>META Ads (€200 budget incluso)</li>
+            <li>Stories giornaliere, menù digitale</li>
+            <li>Supporto prioritario WhatsApp</li>
+          </ul>
+          <a href="#contatti" class="block text-center bg-white text-primary py-3 rounded-full font-bold">Scegli SILVER</a>
+        </div>
+
+        <!-- GOLD -->
+        <div class="pricing-card bg-white text-gray-900 rounded-2xl p-6 reveal card-shadow hover:scale-[1.02] transition">
+          <div class="text-center mb-4">
+            <div class="text-2xl mb-2">🏆</div>
+            <h3 class="text-2xl font-extrabold mb-1">GOLD</h3>
+            <p class="text-sm text-gray-600 mb-3">Piano Premium</p>
+            <div class="text-3xl font-extrabold text-primary mb-2">€1.497<span class="text-base font-medium text-gray-600">/mese</span></div>
+          </div>
+          <ul class="text-sm space-y-2 mb-4">
+            <li>Tutto di SILVER, più:</li>
+            <li>30 post al mese, 4 shooting mensili</li>
+            <li>Video reels settimanali, landing dedicata</li>
+            <li>META + Google Ads (€400 incluso)</li>
+            <li>Email automation e consulenza strategica</li>
+          </ul>
+          <a href="#contatti" class="block text-center bg-primary text-white py-3 rounded-full font-bold">Scegli GOLD</a>
+        </div>
+      </div>
+
+      <!-- comparativa -->
+      <div class="bg-white rounded-2xl p-4 text-gray-900 reveal card-shadow">
+        <h3 class="text-xl font-extrabold text-center mb-4">Confronto Rapido</h3>
+        <div class="overflow-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="text-left">
+                <th class="p-3">Feature</th>
+                <th class="p-3">BLACK</th>
+                <th class="p-3">SILVER</th>
+                <th class="p-3">GOLD</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-t">
+                <td class="p-3">Post mensili</td>
+                <td class="p-3">12</td>
+                <td class="p-3">20</td>
+                <td class="p-3">30</td>
+              </tr>
+              <tr class="border-t">
+                <td class="p-3">Shooting foto</td>
+                <td class="p-3">1/mese</td>
+                <td class="p-3">2/mese</td>
+                <td class="p-3">4/mese</td>
+              </tr>
+              <tr class="border-t">
+                <td class="p-3">Budget Ads</td>
+                <td class="p-3">-</td>
+                <td class="p-3">€200</td>
+                <td class="p-3">€400</td>
+              </tr>
+              <tr class="border-t">
+                <td class="p-3">Landing prenotazioni</td>
+                <td class="p-3">-</td>
+                <td class="p-3">Opzionale</td>
+                <td class="p-3">Inclusa</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-sm text-center mt-4 opacity-80">Consiglio: la maggior parte dei locali sceglie <strong>SILVER</strong> per bilanciare investimento e risultati.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO (placeholder images lazy-loaded) -->
+  <section id="portfolio" class="py-16 bg-gray-50">
+    <div class="max-w-[var(--max-width)] mx-auto px-6">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-8 reveal">Esempi di Lavori</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <!-- use lazy images with data-src -->
+        <div class="bg-white rounded-xl overflow-hidden reveal card-shadow">
+          <div class="lazy-img">
+            <img data-src="https://via.placeholder.com/800x500?text=Progetto+1" alt="Case study ristorante Vicenza 1" class="w-full h-full object-cover block lazy-load" />
+          </div>
+          <div class="p-4">
+            <h3 class="font-bold">Rebranding Osteria Locale</h3>
+            <p class="text-sm text-gray-600">Nuova identità + campagna social + +42% prenotazioni</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-xl overflow-hidden reveal card-shadow">
+          <div class="lazy-img">
+            <img data-src="https://via.placeholder.com/800x500?text=Progetto+2" alt="Case study ristorante Vicenza 2" class="w-full h-full object-cover block lazy-load" />
+          </div>
+          <div class="p-4">
+            <h3 class="font-bold">Social & ADS per Wine Bar</h3>
+            <p class="text-sm text-gray-600">Contenuti video + inserzioni geolocalizzate</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-xl overflow-hidden reveal card-shadow">
+          <div class="lazy-img">
+            <img data-src="https://via.placeholder.com/800x500?text=Progetto+3" alt="Case study ristorante Vicenza 3" class="w-full h-full object-cover block lazy-load" />
+          </div>
+          <div class="p-4">
+            <h3 class="font-bold">Landing Prenotazioni per Pizzeria</h3>
+            <p class="text-sm text-gray-600">Ottimizzazione conversion e integrazione prenotazioni</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIANZE -->
+  <section class="py-12 bg-white">
+    <div class="max-w-[var(--max-width)] mx-auto px-6">
+      <h2 class="text-3xl font-extrabold text-center mb-8 reveal">Cosa Dicono i Nostri Clienti</h2>
+      <div id="testimonials" class="grid md:grid-cols-3 gap-6">
+        <div class="p-6 bg-gray-50 rounded-xl reveal card-shadow">
+          <p class="italic">"Da quando lavoriamo con Comunicazione Bold abbiamo raddoppiato le prenotazioni del venerdì sera."</p>
+          <p class="mt-4 font-bold">— Marco, Osteria San Marco, Vicenza</p>
+        </div>
+        <div class="p-6 bg-gray-50 rounded-xl reveal card-shadow">
+          <p class="italic">"Campagne ADS precise e report utili. ROI evidente già dal primo mese."</p>
+          <p class="mt-4 font-bold">— Laura, Pizzeria Al Centro</p>
+        </div>
+        <div class="p-6 bg-gray-50 rounded-xl reveal card-shadow">
+          <p class="italic">"Gestione social impeccabile, foto che fanno venire l'acquolina."</p>
+          <p class="mt-4 font-bold">— Paolo, Wine Bar Vicenza</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="py-12 bg-gray-100">
+    <div class="max-w-[var(--max-width)] mx-auto px-6">
+      <h2 class="text-3xl font-extrabold text-center mb-8 reveal">Domande Frequenti</h2>
+      <div class="grid md:grid-cols-2 gap-4">
+        <details class="bg-white p-4 rounded-lg card-shadow reveal">
+          <summary class="font-semibold">Quanto tempo per vedere risultati?</summary>
+          <p class="mt-2 text-gray-600">I risultati concreti iniziano in 30–90 giorni, dipende dallo stato attuale del locale e dal budget ADS.</p>
+        </details>
+        <details class="bg-white p-4 rounded-lg card-shadow reveal">
+          <summary class="font-semibold">Serve un contratto annuale?</summary>
+          <p class="mt-2 text-gray-600">No, proponiamo contratti mensili senza vincoli per offrirti massima flessibilità.</p>
+        </details>
+        <details class="bg-white p-4 rounded-lg card-shadow reveal">
+          <summary class="font-semibold">Posso mantenere il controllo dei profili social?</summary>
+          <p class="mt-2 text-gray-600">Sì: lavoriamo in sinergia con il proprietario, ti forniamo approvazione contenuti e report mensili.</p>
+        </details>
+        <details class="bg-white p-4 rounded-lg card-shadow reveal">
+          <summary class="font-semibold">Cosa è incluso nello shooting fotografico?</summary>
+          <p class="mt-2 text-gray-600">Shooting professionale con editing: foto piatti, ambiente e staff. Video brevi per reels sono inclusi nei pacchetti Silver e Gold.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINALE + FORM -->
+  <section id="contatti" class="py-16 bg-white">
+    <div class="max-w-[var(--max-width)] mx-auto px-6 text-center">
+      <h2 class="text-3xl md:text-4xl font-extrabold mb-4 reveal">Parliamone — Prima Consulenza Gratuita</h2>
+      <p class="text-gray-600 mb-8 reveal">Raccontaci del tuo locale. Ti mostreremo un piano concreto per aumentare le prenotazioni in 30 giorni.</p>
+
+      <!-- Two-column: CTA + Form -->
+      <div class="grid md:grid-cols-2 gap-6 items-start">
+        <!-- left: CTA + Calendly + WhatsApp -->
+        <div class="bg-gradient-to-br from-primary to-accent text-white p-6 rounded-xl reveal card-shadow">
+          <h3 class="font-extrabold text-xl mb-3">Prenota Subito</h3>
+          <p class="mb-4">Scegli una chiamata di 20 minuti con analisi gratuita del locale.</p>
+          <a id="calendlyLink" href="https://calendly.com/TUOLINK" target="_blank" rel="noopener" class="block bg-white text-primary py-3 rounded-full font-bold mb-3">Prenota su Calendly</a>
+          <a id="whatsappLink" href="https://wa.me/39XXXXXXXXXX" target="_blank" rel="noopener" class="block bg-white/10 border border-white text-white py-3 rounded-full font-semibold">Scrivici su WhatsApp</a>
+          <p class="text-xs mt-4 opacity-90">Sede: Provincia di Vicenza · Disponibilità rapida</p>
+        </div>
+
+        <!-- right: inline form (mailto fallback) -->
+        <form id="leadForm" class="bg-white p-6 rounded-xl card-shadow reveal" onsubmit="return handleForm(event)">
+          <div class="mb-4">
+            <label class="text-sm font-medium">Nome locale / Referente</label>
+            <input id="name" required class="mt-2 block w-full border border-gray-200 rounded-md px-3 py-2" placeholder="Es. Osteria Da Mario" />
+          </div>
+          <div class="mb-4">
+            <label class="text-sm font-medium">Telefono</label>
+            <input id="phone" required class="mt-2 block w-full border border-gray-200 rounded-md px-3 py-2" placeholder="+39 349 123 4567" />
+          </div>
+          <div class="mb-4">
+            <label class="text-sm font-medium">Email</label>
+            <input id="email" type="email" required class="mt-2 block w-full border border-gray-200 rounded-md px-3 py-2" placeholder="tuo@locale.it" />
+          </div>
+          <div class="mb-4">
+            <label class="text-sm font-medium">Breve descrizione / Obiettivo</label>
+            <textarea id="message" rows="4" class="mt-2 block w-full border border-gray-200 rounded-md px-3 py-2" placeholder="Es. Aumentare prenotazioni il venerdì"></textarea>
+          </div>
+          <div class="flex gap-3">
+            <button type="submit" class="bg-primary text-white py-3 rounded-full font-bold flex-1">Richiedi Consulenza</button>
+            <button type="button" onclick="quickCall()" class="border border-gray-200 py-3 rounded-full px-4">Chiamami</button>
+          </div>
+          <p id="formNote" class="text-xs mt-3 opacity-80">Risponderemo entro 24 ore lavorative. Puoi anche contattarci su WhatsApp.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-gray-900 text-white py-8">
+    <div class="max-w-[var(--max-width)] mx-auto px-6 grid md:grid-cols-3 gap-6 items-start">
+      <div>
+        <a href="#" class="font-black text-xl text-primary">Comunicazione <span class="text-accent">Bold</span></a>
+        <p class="mt-3 text-sm opacity-80">Marketing per ristoranti a Vicenza · Strategie locali e contenuti professionali.</p>
+      </div>
+      <div>
+        <h4 class="font-bold mb-2">Contatti</h4>
+        <p class="text-sm opacity-80">Email: info@comunicazionebold.it</p>
+        <p class="text-sm opacity-80">Tel: +39 349 XXXXXXX</p>
+      </div>
+      <div>
+        <h4 class="font-bold mb-2">Link utili</h4>
+        <ul class="text-sm opacity-80 space-y-2">
+          <li><a href="#pacchetti">Pacchetti</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contatti">Contatti</a></li>
+          <li><a href="#">Privacy & Cookie</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="text-center text-xs opacity-70 mt-6">© <span id="year"></span> Comunicazione Bold — Tutti i diritti riservati</div>
+  </footer>
+
+  <!-- WHATSAPP STICKY -->
+  <a id="whatsAppSticky" href="https://wa.me/39XXXXXXXXXX" target="_blank" rel="noopener" class="fixed bottom-6 right-6 bg-[#25D366] text-white px-4 py-3 rounded-full shadow-xl z-50 flex items-center gap-2 hover:scale-105 transition" aria-label="Chat WhatsApp">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path fill="currentColor" d="M20.52 3.48A11.9 11.9 0 0012 0C5.373 0 .001 5.373.001 12c0 2.115.553 4.174 1.602 5.99L0 24l6.202-1.621A11.93 11.93 0 0012 24c6.627 0 12-5.373 12-12 0-3.206-1.249-6.217-3.48-8.52z"/></svg>
+    Chat WhatsApp
+  </a>
+
+  <!-- SCRIPTS: reveal, intersection, lazyload, counters, form handling, misc -->
+  <script>
+    // small helpers & performance optimizations
+
+    // Set year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Mobile nav toggle
+    const mobileToggle = document.getElementById('mobileToggle');
+    const mobileNav = document.getElementById('mobileNav');
+    mobileToggle?.addEventListener('click', () => {
+      mobileNav.classList.toggle('hidden');
+    });
+    mobileNav.addEventListener('click', (e) => {
+      if (e.target === mobileNav) mobileNav.classList.add('hidden');
+    });
+
+    // IntersectionObserver for reveal animations (more efficient than scroll listeners)
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => {
+      // initial state
+      el.classList.add('opacity-0', 'translate-y-6');
+      el.style.transition = 'opacity .7s ease, transform .7s ease';
+      observer.observe(el);
+    });
+
+    // Lazy-load images (simple)
+    document.addEventListener('DOMContentLoaded', function () {
+      const lazyImages = document.querySelectorAll('img.lazy-load');
+      const imgObserver = new IntersectionObserver((entries, imgObs) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const img = entry.target;
+          img.src = img.dataset.src;
+          img.classList.remove('lazy-load');
+          imgObs.unobserve(img);
+        });
+      }, { rootMargin: "200px 0px" });
+      lazyImages.forEach(img => imgObserver.observe(img));
+    });
+
+    // Simple counter animation (if needed in future)
+    function animateValue(el, start, end, duration) {
+      let startTime = null;
+      function step(timestamp) {
+        if (!startTime) startTime = timestamp;
+        const progress = Math.min((timestamp - startTime) / duration, 1);
+        el.textContent = Math.floor(progress * (end - start) + start);
+        if (progress < 1) window.requestAnimationFrame(step);
+      }
+      window.requestAnimationFrame(step);
+    }
+
+    // Quick call action
+    function quickCall() {
+      // tries to open tel: on mobile, fallback to mailto
+      window.location.href = 'tel:+39XXXXXXXXXX';
+    }
+
+    // Form handling: lightweight, no server required -> mailto fallback + GA event
+    function handleForm(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+      // basic validation
+      if (!name || !email) {
+        alert('Per favore compila nome ed email.');
+        return false;
+      }
+      // track event if gtag available
+      if (window.gtag) {
+        gtag('event', 'lead_submit', { method: 'landing_form', value: name });
+      }
+      // build mailto payload
+      const subject = encodeURIComponent('Richiesta consulenza - ' + name);
+      const body = encodeURIComponent('Nome/Locale: ' + name + '\nTelefono: ' + phone + '\nEmail: ' + email + '\n\nMessaggio:\n' + message);
+      // open mail client
+      window.location.href = `mailto:info@comunicazionebold.it?subject=${subject}&body=${body}`;
+      // show quick feedback
+      const note = document.getElementById('formNote');
+      note.textContent = 'Grazie! Si aprirà la tua email per inviare la richiesta. Ti risponderemo entro 24 ore.';
+      return false;
+    }
+
+    // CTA tracking (example)
+    document.getElementById('ctaPacchetti')?.addEventListener('click', () => {
+      if (window.gtag) gtag('event', 'click_cta', { label: 'scopri_pacchetti' });
+    });
+
+    // Calendly link & WhatsApp tracking
+    document.getElementById('calendlyLink')?.addEventListener('click', () => { if (window.gtag) gtag('event', 'book_call', { method: 'calendly' }); });
+    document.getElementById('whatsappLink')?.addEventListener('click', () => { if (window.gtag) gtag('event', 'open_whatsapp'); });
+
+    // small accessibility tweak: focus outline visible on keyboard navigation
+    document.addEventListener('keydown', function(e){
+      if (e.key === 'Tab') document.documentElement.classList.add('show-focus');
+    });
+  </script>
+
+  <!-- Analytics: GA4 (replace with your Measurement ID) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_GA4_MEASUREMENT_ID"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'YOUR_GA4_MEASUREMENT_ID', { 'send_page_view': true });
+  </script>
+
+  <!-- Performance notes:
+       - Use real images optimized (WebP if possible), pre-generate multiple sizes.
+       - For production, compile Tailwind and purge unused classes.
+       - Move heavy assets to CDN and enable caching headers.
+       - Replace mailto fallback with Formspree/Netlify functions for serverless leads.
+  -->
+
+</body>
+</html>
